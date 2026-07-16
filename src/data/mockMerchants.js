@@ -11,7 +11,8 @@ export const mockMerchants = [
       transactions_last_30d: 4500,
       transaction_volume_change_30d: 5.2,
       stalled_support_days: 0,
-      nps_score: 9
+      nps_score: 9,
+      volume_history: [4000, 4100, 4200, 4300, 4400, 4500]
     },
     risk_score: 5, 
     risk_category: "Low Risk",
@@ -34,7 +35,8 @@ export const mockMerchants = [
       transactions_last_30d: 850,
       transaction_volume_change_30d: -2.1,
       stalled_support_days: 1,
-      nps_score: 6
+      nps_score: 6,
+      volume_history: [900, 890, 880, 870, 860, 850]
     },
     risk_score: 15, 
     risk_category: "Low Risk",
@@ -57,7 +59,8 @@ export const mockMerchants = [
       transactions_last_30d: 1200,
       transaction_volume_change_30d: -25.4,
       stalled_support_days: 0,
-      nps_score: 5
+      nps_score: 5,
+      volume_history: [1600, 1650, 1600, 1500, 1300, 1200]
     },
     risk_score: 30, 
     risk_category: "Medium Risk",
@@ -81,7 +84,8 @@ export const mockMerchants = [
       transactions_last_30d: 120,
       transaction_volume_change_30d: -15.0,
       stalled_support_days: 8,
-      nps_score: 3
+      nps_score: 3,
+      volume_history: [200, 180, 170, 150, 130, 120]
     },
     risk_score: 70, 
     risk_category: "High Risk",
@@ -105,7 +109,8 @@ export const mockMerchants = [
       transactions_last_30d: 300,
       transaction_volume_change_30d: -82.5,
       stalled_support_days: 0,
-      nps_score: null
+      nps_score: null,
+      volume_history: [2000, 2500, 1800, 800, 400, 300]
     },
     risk_score: 40,
     risk_category: "Medium Risk",
@@ -129,7 +134,8 @@ export const mockMerchants = [
       transactions_last_30d: 15000,
       transaction_volume_change_30d: -65.0,
       stalled_support_days: 0,
-      nps_score: 2
+      nps_score: 2,
+      volume_history: [45000, 46000, 45000, 40000, 25000, 15000]
     },
     risk_score: 75,
     risk_category: "High Risk",
@@ -153,7 +159,8 @@ export const mockMerchants = [
       transactions_last_30d: 0,
       transaction_volume_change_30d: -100.0,
       stalled_support_days: 0,
-      nps_score: null
+      nps_score: null,
+      volume_history: [100, 110, 120, 80, 0, 0]
     },
     risk_score: 95, 
     risk_category: "Critical",

@@ -45,3 +45,34 @@
   padding: 4rem 2rem;
   text-align: center;
 }
+
+.mb-4 { margin-bottom: 1rem; }
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  width: 100%;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.5rem 0.25rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-bottom: -1px;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+}
+
+.tab-btn.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent-primary);
+}

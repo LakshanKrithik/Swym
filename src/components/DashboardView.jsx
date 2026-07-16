@@ -7,11 +7,18 @@ import './DashboardView.css';
 
 export function DashboardView({ showToast, searchQuery }) {
   const [selectedMerchant, setSelectedMerchant] = useState(null);
+  const [activeTab, setActiveTab] = useState('All');
 
-  const filteredMerchants = mockMerchants.filter(m => 
+  let filteredMerchants = mockMerchants.filter(m => 
     m.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
     m.merchant_id.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  if (activeTab === 'Risk') {
+    filteredMerchants = filteredMerchants.filter(m => m.risk_score >= 50);
+  } else if (activeTab === 'Healthy') {
+    filteredMerchants = filteredMerchants.filter(m => m.risk_score < 50);
+  }
 
   const atRiskMerchants = mockMerchants.filter(m => m.risk_score >= 50);
   const totalAtRisk = atRiskMerchants.length;
@@ -69,12 +76,24 @@ export function DashboardView({ showToast, searchQuery }) {
         </div>
       </div>
 
+      <div className="table-controls mb-4">
+        <div className="tabs">
+          <button className={`tab-btn ${activeTab === 'All' ? 'active' : ''}`} onClick={() => setActiveTab('All')}>All Merchants</button>
+          <button className={`tab-btn ${activeTab === 'Risk' ? 'active' : ''}`} onClick={() => setActiveTab('Risk')}>Action Required</button>
+          <button className={`tab-btn ${activeTab === 'Healthy' ? 'active' : ''}`} onClick={() => setActiveTab('Healthy')}>Healthy</button>
+        </div>
+      </div>
+
       <div className="table-container">
         {filteredMerchants.length > 0 ? (
-          <MerchantRiskTable merchants={filteredMerchants} onSelectMerchant={setSelectedMerchant} />
+          <MerchantRiskTable 
+            merchants={filteredMerchants} 
+            onSelectMerchant={setSelectedMerchant} 
+            onBulkAction={(ids) => showToast(`Successfully initiated bulk campaign for ${ids.length} merchants.`)}
+          />
         ) : (
           <div className="empty-state">
-            <p className="text-muted">No merchants found matching "{searchQuery}"</p>
+            <p className="text-muted">No merchants found matching your criteria.</p>
           </div>
         )}
       </div>
