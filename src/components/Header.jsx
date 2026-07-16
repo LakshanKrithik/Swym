@@ -2,27 +2,26 @@ import React from 'react';
 import { Bell, Search } from 'lucide-react';
 import './Header.css';
 
-export function Header({ showToast }) {
+export function Header({ showToast, searchQuery, setSearchQuery }) {
   return (
     <header className="header">
       <div className="search-bar">
-        <Search size={18} className="search-icon" />
+        <Search size={16} className="search-icon" />
         <input 
           type="text" 
-          placeholder="Search merchants, metrics..." 
+          placeholder="Search by merchant name or ID..." 
           className="search-input" 
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') showToast(`Searching for "${e.target.value}"...`, 'info');
-          }}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
       <div className="header-actions">
         <button className="icon-btn" onClick={() => showToast('No new notifications.', 'info')}>
-          <Bell size={20} />
+          <Bell size={18} />
           <span className="notification-dot"></span>
         </button>
-        <div className="user-profile" onClick={() => showToast('Opening user profile...', 'info')}>
-          <img src="https://ui-avatars.com/api/?name=Admin+User&background=38bdf8&color=fff" alt="Admin" className="avatar" />
+        <div className="user-profile" onClick={() => showToast('Opening user settings...', 'info')}>
+          <div className="avatar">A</div>
         </div>
       </div>
     </header>

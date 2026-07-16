@@ -7,6 +7,7 @@ import { Info } from 'lucide-react'
 
 function App() {
   const [toast, setToast] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const showToast = (message, type = 'info') => {
     setToast({ message, type });
@@ -19,13 +20,13 @@ function App() {
     <div className="dashboard-layout">
       <Sidebar showToast={showToast} />
       <div className="main-content">
-        <Header showToast={showToast} />
-        <DashboardView showToast={showToast} />
+        <Header showToast={showToast} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <DashboardView showToast={showToast} searchQuery={searchQuery} />
       </div>
 
       {toast && (
         <div className="toast-notification">
-          <Info size={18} style={{ color: 'var(--accent-primary)' }} />
+          <Info size={16} />
           <span>{toast.message}</span>
         </div>
       )}

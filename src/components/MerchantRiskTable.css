@@ -1,3 +1,8 @@
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
 .risk-table {
   width: 100%;
   border-collapse: collapse;
@@ -7,64 +12,37 @@
 .risk-table th {
   padding: 1rem 1.5rem;
   font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--text-secondary);
   border-bottom: 1px solid var(--border-subtle);
-  font-weight: 600;
-  background-color: var(--bg-surface);
+  background-color: var(--bg-surface-hover);
 }
 
 .risk-table td {
   padding: 1rem 1.5rem;
   border-bottom: 1px solid var(--border-subtle);
-  vertical-align: middle;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
 }
 
-.table-row {
+.merchant-row {
   cursor: pointer;
   transition: background-color 0.15s ease;
 }
 
-.table-row:hover {
+.merchant-row:hover {
   background-color: var(--bg-surface-hover);
 }
 
-.table-row:last-child td {
-  border-bottom: none;
+.merchant-name {
+  font-weight: 500;
+  color: var(--text-primary);
+  display: block;
 }
 
-.score-cell {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.score-bar-bg {
-  width: 60px;
-  height: 6px;
-  background-color: var(--border-subtle);
-  border-radius: 99px;
-  overflow: hidden;
-}
-
-.score-bar-fill {
-  height: 100%;
-  border-radius: 99px;
-}
-
-.score-bar-fill.critical { background-color: var(--risk-critical); }
-.score-bar-fill.high { background-color: var(--risk-high); }
-.score-bar-fill.medium { background-color: var(--risk-medium); }
-.score-bar-fill.low { background-color: var(--risk-low); }
-
-.action-cell {
-  text-align: right;
-  width: 40px;
-}
-
-.table-row:hover .action-cell svg {
-  color: var(--accent-primary);
-  transform: translateX(4px);
-  transition: all 0.2s ease;
+.merchant-id {
+  font-size: 0.75rem;
+  color: var(--text-muted);
 }
