@@ -1,0 +1,68 @@
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+}
+
+.dashboard-title {
+  font-size: 1.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon.critical {
+  background-color: var(--risk-critical-bg);
+  color: var(--risk-critical);
+}
+
+.card-icon.warning {
+  background-color: var(--risk-high-bg);
+  color: var(--risk-high);
+}
+
+.card-icon.info {
+  background-color: rgba(56, 189, 248, 0.1);
+  color: var(--accent-primary);
+}
+
+.card-label {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.card-value {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.table-container {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
