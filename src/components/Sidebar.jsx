@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LayoutDashboard, Users, Settings, LogOut, ShieldAlert } from 'lucide-react';
 import './Sidebar.css';
 
-export function Sidebar() {
+export function Sidebar({ showToast }) {
+  const [activeTab, setActiveTab] = useState('dashboard');
+
+  const handleNav = (e, tab, name) => {
+    e.preventDefault();
+    setActiveTab(tab);
+    if (tab !== 'dashboard') {
+      showToast(`${name} module is not available in this demo.`, 'info');
+    }
+  };
+
   return (
     <aside className="sidebar">
       <div className="sidebar-logo">
@@ -10,21 +20,21 @@ export function Sidebar() {
         <span className="logo-text">ChurnGuard</span>
       </div>
       <nav className="sidebar-nav">
-        <a href="#" className="nav-item active">
+        <a href="#" className={`nav-item ${activeTab === 'dashboard' ? 'active' : ''}`} onClick={(e) => handleNav(e, 'dashboard', 'Dashboard')}>
           <LayoutDashboard size={20} />
           <span>Dashboard</span>
         </a>
-        <a href="#" className="nav-item">
+        <a href="#" className={`nav-item ${activeTab === 'merchants' ? 'active' : ''}`} onClick={(e) => handleNav(e, 'merchants', 'Merchants')}>
           <Users size={20} />
           <span>Merchants</span>
         </a>
-        <a href="#" className="nav-item">
+        <a href="#" className={`nav-item ${activeTab === 'settings' ? 'active' : ''}`} onClick={(e) => handleNav(e, 'settings', 'Settings')}>
           <Settings size={20} />
           <span>Settings</span>
         </a>
       </nav>
       <div className="sidebar-footer">
-        <a href="#" className="nav-item">
+        <a href="#" className="nav-item" onClick={(e) => { e.preventDefault(); showToast('Logging out...', 'info'); }}>
           <LogOut size={20} />
           <span>Logout</span>
         </a>

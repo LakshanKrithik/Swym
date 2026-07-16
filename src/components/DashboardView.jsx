@@ -5,7 +5,7 @@ import { MerchantDetailPanel } from './MerchantDetailPanel';
 import { AlertTriangle, TrendingDown, Users, Download } from 'lucide-react';
 import './DashboardView.css';
 
-export function DashboardView() {
+export function DashboardView({ showToast }) {
   const [selectedMerchant, setSelectedMerchant] = useState(null);
 
   const totalAtRisk = mockMerchants.filter(m => m.risk_score >= 50).length;
@@ -18,7 +18,10 @@ export function DashboardView() {
           <h1 className="dashboard-title">Merchant Risk Overview</h1>
           <p className="text-muted">Proactively identify and intervene with at-risk accounts.</p>
         </div>
-        <button className="btn-primary flex items-center gap-2">
+        <button 
+          className="btn-primary flex items-center gap-2"
+          onClick={() => showToast('Generating comprehensive risk report... This will download shortly.', 'info')}
+        >
           <Download size={18} />
           Export Report
         </button>
@@ -64,6 +67,7 @@ export function DashboardView() {
         <MerchantDetailPanel 
           merchant={selectedMerchant} 
           onClose={() => setSelectedMerchant(null)} 
+          showToast={showToast}
         />
       )}
     </main>

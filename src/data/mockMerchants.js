@@ -13,10 +13,14 @@ export const mockMerchants = [
       stalled_support_days: 0,
       nps_score: 9
     },
-    risk_score: 5, // Base 5
+    risk_score: 5, 
     risk_category: "Low Risk",
     primary_churn_signal: "None",
-    recommended_action: "No action required. Healthy account."
+    score_factors: [
+      { signal: "Base Score", points: 5 }
+    ],
+    recommended_action: "No action required. Healthy account.",
+    recommended_action_rationale: "Merchant is highly active and transaction volume is stable. No intervention is necessary."
   },
   {
     merchant_id: "m_1002",
@@ -32,10 +36,14 @@ export const mockMerchants = [
       stalled_support_days: 1,
       nps_score: 6
     },
-    risk_score: 15, // HVA Abandonment (+15)
+    risk_score: 15, 
     risk_category: "Low Risk",
     primary_churn_signal: "HVA Abandonment",
-    recommended_action: "CS to send targeted outreach offering a 'workflow optimization session'."
+    score_factors: [
+      { signal: "HVA Abandonment (>21 days)", points: 15 }
+    ],
+    recommended_action: "CS to send targeted outreach offering a 'workflow optimization session'.",
+    recommended_action_rationale: "Since they haven't used advanced features recently but are still processing transactions, a low-touch educational check-in helps re-engage them without being intrusive."
   },
   {
     merchant_id: "m_1003",
@@ -51,10 +59,15 @@ export const mockMerchants = [
       stalled_support_days: 0,
       nps_score: 5
     },
-    risk_score: 30, // Volume Decline > 20% (+25) + Base 5
+    risk_score: 30, 
     risk_category: "Medium Risk",
     primary_churn_signal: "Transaction Volume Decline",
-    recommended_action: "AM to schedule a Business Review. Investigate traffic routing."
+    score_factors: [
+      { signal: "Transaction Volume Decline (>20%)", points: 25 },
+      { signal: "Base Score", points: 5 }
+    ],
+    recommended_action: "AM to schedule a Business Review. Investigate traffic routing.",
+    recommended_action_rationale: "A >20% drop could indicate macro-economic factors or routing volume to a competitor. A Business Review uncovers the root cause before they completely migrate."
   },
   {
     merchant_id: "m_1004",
@@ -70,10 +83,15 @@ export const mockMerchants = [
       stalled_support_days: 8,
       nps_score: 3
     },
-    risk_score: 70, // Stalled Support (+55) + HVA (+15)
+    risk_score: 70, 
     risk_category: "High Risk",
     primary_churn_signal: "Stalled Support Issue",
-    recommended_action: "High Risk. Escalate immediately to Tier 2/Tier 3 Engineering."
+    score_factors: [
+      { signal: "Stalled Critical Support Issue", points: 55 },
+      { signal: "HVA Abandonment (>21 days)", points: 15 }
+    ],
+    recommended_action: "High Risk. Escalate immediately to Tier 2/Tier 3 Engineering.",
+    recommended_action_rationale: "An unresolved critical issue destroys trust quickly. Escalating to Engineering directly circumvents normal queues and prevents immediate rage-quitting."
   },
   {
     merchant_id: "m_1005",
@@ -89,10 +107,15 @@ export const mockMerchants = [
       stalled_support_days: 0,
       nps_score: null
     },
-    risk_score: 40, // Seasonal cap on Vol Decline (+25) + HVA (+15). Keeps them at Medium Risk.
+    risk_score: 40,
     risk_category: "Medium Risk",
     primary_churn_signal: "Transaction Volume Decline",
-    recommended_action: "Volume drop aligns with seasonal pattern. Send automated check-in."
+    score_factors: [
+      { signal: "Volume Decline (Capped due to Seasonality)", points: 25 },
+      { signal: "HVA Abandonment (>21 days)", points: 15 }
+    ],
+    recommended_action: "Volume drop aligns with seasonal pattern. Send automated check-in.",
+    recommended_action_rationale: "Because this merchant is seasonal, manual AM intervention is an inefficient use of resources. An automated email maintains the relationship gracefully during their off-season."
   },
   {
     merchant_id: "m_1006",
@@ -108,10 +131,15 @@ export const mockMerchants = [
       stalled_support_days: 0,
       nps_score: 2
     },
-    risk_score: 75, // Severe Volume Decline > 50% (+60) + HVA (+15)
+    risk_score: 75,
     risk_category: "High Risk",
     primary_churn_signal: "Severe Volume Decline",
-    recommended_action: "Massive volume drop detected. Highly likely competitor migration. Executive escalation required."
+    score_factors: [
+      { signal: "Severe Volume Decline (>50%)", points: 60 },
+      { signal: "HVA Abandonment (>21 days)", points: 15 }
+    ],
+    recommended_action: "Massive volume drop detected. Executive escalation required.",
+    recommended_action_rationale: "A massive, non-seasonal volume drop almost always indicates an active migration to a competitor. Executive intervention is required to save the account and offer counter-terms."
   },
   {
     merchant_id: "m_1007",
@@ -127,9 +155,14 @@ export const mockMerchants = [
       stalled_support_days: 0,
       nps_score: null
     },
-    risk_score: 95, // Failed Payment/Downgrade (+60) + Severe Vol Decline (+35 capped)
+    risk_score: 95, 
     risk_category: "Critical",
     primary_churn_signal: "Failed Payment / Abandonment",
-    recommended_action: "Trigger automated Dunning sequence immediately. Account suspended."
+    score_factors: [
+      { signal: "Failed Payment / Downgrade", points: 60 },
+      { signal: "Severe Volume Decline (Capped at Max)", points: 35 }
+    ],
+    recommended_action: "Trigger automated Dunning sequence immediately.",
+    recommended_action_rationale: "A failed payment means we are actively losing MRR. Automated dunning captures accidental failures (expired cards) while minimizing manual AM overhead on Starter tier accounts."
   }
 ];
