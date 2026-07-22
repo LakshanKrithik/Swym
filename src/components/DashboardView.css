@@ -21,7 +21,7 @@
 .card-label {
   color: var(--text-muted);
   font-size: 0.875rem;
-  font-weight: 5;
+  font-weight: 500;
 }
 
 .card-value {
